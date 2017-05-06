@@ -4,118 +4,134 @@ var ReactDOM = require('react-dom');
 var request = require('superagent');
 // var Select = require('react-select');
 
-var MainComponent = React.createClass({
-	displayName: 'MainComponent',
+class MainComponent extends React.Component {
 
-	getInitialState: function () {
-		return { roommateName: '' };
-	},
-	getNameInfo: function (roommateName) {
-		console.log(roommateName);
-		var state = this.state;
-		state.roommateName = roommateName;
-		this.setState(state);
-	},
-	render: function () {
+	// getNameInfo(roommateName) {
+	// 	console.log(roommateName);
+	// 	var state = this.state;
+	// 	state.roommateName = roommateName;
+	// 	this.setState(state);
+	// }
+	render() {
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(SubmitComponent, { getNameInfo: this.getNameInfo })
+			React.createElement(InputComponent, null)
 		);
 	}
-});
 
-var InputComponent = React.createClass({
-	displayName: 'InputComponent',
+}
 
-	getInitialState: function () {
-		return { roommateName: '' };
-	},
-	handleNameChangeInput: function (e) {
-		var state = this.state;
-		state.roommateName = e.target.value;
-		this.setState(state);
-		console.log("this is roommate " + this.state.roommateName);
+// <SubmitComponent getNameInfo={this.getNameInfo} />
+
+class InputComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			roommateName: ''
+		};
+	}
+
+	handleNameInput(e) {
+		this.setState({ roommateName: e.target.value });
+		// var state = this.state;
+		// state.roommateName = e.target.value;
+		// this.setState(state);
+		// console.log("this is roommate " + this.state.roommateName)
 		console.log(this.state);
-	},
-	render: function () {
+	}
+	handleDataEntry(e) {
+		e.preventDefault();
+		console.log(this);
+		// console.log("clickkkk");
+		// console.log(this.state);
+		// console.log("This is the state: " + this.state.roommateName)
+		// this.props.getNameInfo(this.state.roommateName);
+		// console.log("roommate name is " + this.state.roommateName);
+	}
+	render() {
 		return React.createElement(
 			'div',
 			{ className: 'inputComponentDiv' },
-			React.createElement('input', { onChange: this.handleNameChangeInput, name: 'roommateName', type: 'text', value: this.state.roommateName })
-		);
-	}
-});
-
-var SelectChore = React.createClass({
-	displayName: 'SelectChore',
-
-	getInitialState: function () {
-		return {};
-	},
-	render: function () {
-		return React.createElement(
-			'div',
-			{ className: 'choreSelectorDiv' },
-			React.createElement(
-				'select',
-				null,
-				React.createElement(
-					'option',
-					{ value: 'litter' },
-					'cleaned litter box'
-				),
-				React.createElement(
-					'option',
-					{ value: 'foodPurchase' },
-					'bought food'
-				),
-				React.createElement(
-					'option',
-					{ value: 'nails' },
-					'trimmed nails'
-				),
-				React.createElement(
-					'option',
-					{ value: 'feed' },
-					'fed the kitty'
-				)
-			)
-		);
-	}
-});
-
-var SubmitComponent = React.createClass({
-	displayName: 'SubmitComponent',
-
-	getInitialState: function () {
-		return {};
-	},
-	handleDataEntry: function () {
-		console.log("clickkkk");
-		console.log(this.state);
-		console.log("This is the state: " + this.state.roommateName);
-		this.props.getNameInfo(this.state.roommateName);
-		console.log("roommate name is " + this.state.roommateName);
-	},
-	render: function () {
-		return React.createElement(
-			'div',
-			null,
-			React.createElement(InputComponent, null),
-			React.createElement(SelectChore, null),
 			React.createElement(
 				'div',
 				null,
 				React.createElement(
-					'button',
-					{ onClick: this.handleDataEntry },
-					' Log :) '
+					'form',
+					{ onSubmit: this.handleDataEntry.bind(this) },
+					React.createElement(
+						'div',
+						null,
+						React.createElement('input', { ref: 'name', type: 'text', value: this.state.roommateName, onChange: this.handleNameInput.bind(this) })
+					),
+					React.createElement(
+						'div',
+						null,
+						React.createElement(
+							'select',
+							null,
+							React.createElement(
+								'option',
+								{ value: 'litter' },
+								'cleaned litter box'
+							),
+							React.createElement(
+								'option',
+								{ value: 'foodPurchase' },
+								'bought food'
+							),
+							React.createElement(
+								'option',
+								{ value: 'nails' },
+								'trimmed nails'
+							),
+							React.createElement(
+								'option',
+								{ value: 'feed' },
+								'fed the kitty'
+							)
+						)
+					),
+					React.createElement(
+						'div',
+						null,
+						React.createElement(
+							'button',
+							{ type: 'submit' },
+							' Log :) '
+						)
+					)
 				)
 			)
 		);
 	}
-});
+}
+//				<input onChange={this.handleNameChangeInput} name="roommateName" type="text" value={this.state.roommateName}/>
+
+
+// class SelectChore extends React.Component {
+// 	render(){
+// 		return (
+// 			<div className="choreSelectorDiv">
+
+// 			</div>
+// 		)
+// 	}
+// }
+//
+// class SubmitComponent extends React.Component {
+//
+// 	render(){
+// 		return (
+// 			<div>
+// 				<InputComponent />
+// 				<SelectChore />
+// 			</div>
+// 		)
+// 	}
+// }
+//
+//
 
 ReactDOM.render(React.createElement(MainComponent, null), document.getElementById('container'));
 

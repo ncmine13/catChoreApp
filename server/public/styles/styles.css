@@ -14,11 +14,15 @@ body #container div {
   margin-top: 8%;
   margin-left: 5%;
 }
-body #container div div {
+body #container div .inputComponentDiv {
   width: 100%;
 }
-body #container div div button {
+body #container div .inputComponentDiv form {
+  display: flex;
+  flex-direction: row;
+}
+body #container div .inputComponentDiv form button {
   width: 87px;
-  padding: 14px;
+  padding: 5px;
   border-radius: 3px;
 }
