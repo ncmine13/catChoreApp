@@ -8,3 +8,17 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+body #container div {
+  display: flex;
+  flex-direction: row;
+  margin-top: 8%;
+  margin-left: 5%;
+}
+body #container div div {
+  width: 100%;
+}
+body #container div div button {
+  width: 87px;
+  padding: 14px;
+  border-radius: 3px;
+}

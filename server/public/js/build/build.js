@@ -2,6 +2,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
+// var Select = require('react-select');
 
 var MainComponent = React.createClass({
 	displayName: 'MainComponent',
@@ -19,7 +20,7 @@ var MainComponent = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(InputComponent, { getNameInfo: this.getNameInfo })
+			React.createElement(SubmitComponent, { getNameInfo: this.getNameInfo })
 		);
 	}
 });
@@ -37,9 +38,62 @@ var InputComponent = React.createClass({
 		console.log("this is roommate " + this.state.roommateName);
 		console.log(this.state);
 	},
-	handleNameEntry: function () {
+	render: function () {
+		return React.createElement(
+			'div',
+			{ className: 'inputComponentDiv' },
+			React.createElement('input', { onChange: this.handleNameChangeInput, name: 'roommateName', type: 'text', value: this.state.roommateName })
+		);
+	}
+});
+
+var SelectChore = React.createClass({
+	displayName: 'SelectChore',
+
+	getInitialState: function () {
+		return {};
+	},
+	render: function () {
+		return React.createElement(
+			'div',
+			{ className: 'choreSelectorDiv' },
+			React.createElement(
+				'select',
+				null,
+				React.createElement(
+					'option',
+					{ value: 'litter' },
+					'cleaned litter box'
+				),
+				React.createElement(
+					'option',
+					{ value: 'foodPurchase' },
+					'bought food'
+				),
+				React.createElement(
+					'option',
+					{ value: 'nails' },
+					'trimmed nails'
+				),
+				React.createElement(
+					'option',
+					{ value: 'feed' },
+					'fed the kitty'
+				)
+			)
+		);
+	}
+});
+
+var SubmitComponent = React.createClass({
+	displayName: 'SubmitComponent',
+
+	getInitialState: function () {
+		return {};
+	},
+	handleDataEntry: function () {
 		console.log("clickkkk");
-		console.log("these are props", this.props);
+		console.log(this.state);
 		console.log("This is the state: " + this.state.roommateName);
 		this.props.getNameInfo(this.state.roommateName);
 		console.log("roommate name is " + this.state.roommateName);
@@ -48,23 +102,15 @@ var InputComponent = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(
-				'h1',
-				null,
-				'Input component'
-			),
+			React.createElement(InputComponent, null),
+			React.createElement(SelectChore, null),
 			React.createElement(
 				'div',
 				null,
-				React.createElement('input', { onChange: this.handleNameChangeInput, name: 'roommateName', type: 'text', value: this.state.roommateName }),
 				React.createElement(
-					'div',
-					null,
-					React.createElement(
-						'button',
-						{ onClick: this.handleNameEntry },
-						' Log :) '
-					)
+					'button',
+					{ onClick: this.handleDataEntry },
+					' Log :) '
 				)
 			)
 		);

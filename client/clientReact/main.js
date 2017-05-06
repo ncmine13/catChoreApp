@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
+// var Select = require('react-select');
 
 var MainComponent = React.createClass({
 	getInitialState: function(){
@@ -15,7 +16,7 @@ var MainComponent = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<InputComponent getNameInfo={this.getNameInfo} />
+				<SubmitComponent getNameInfo={this.getNameInfo} />
 			</div>
 		)
 	}
@@ -32,9 +33,41 @@ var InputComponent = React.createClass({
 		console.log("this is roommate " + this.state.roommateName)
 		console.log(this.state)
 	},
-	handleNameEntry: function(){
+	render: function(){
+		return (
+			<div className="inputComponentDiv">
+				<input onChange={this.handleNameChangeInput} name="roommateName" type="text" value={this.state.roommateName}/>
+			</div>
+
+		)
+	}
+})
+
+var SelectChore = React.createClass({
+	getInitialState: function(){
+		return {}
+	},
+	render: function(){
+		return (
+			<div className="choreSelectorDiv">
+				<select>
+					<option value="litter">cleaned litter box</option>
+					<option value="foodPurchase">bought food</option>
+					<option value="nails">trimmed nails</option>
+					<option value="feed">fed the kitty</option>
+				</select>
+			</div>
+		)
+	}
+})
+
+var SubmitComponent = React.createClass({
+	getInitialState: function(){
+		return {}
+	},
+	handleDataEntry: function(){
 		console.log("clickkkk");
-		console.log("these are props", this.props);
+		console.log(this.state);
 		console.log("This is the state: " + this.state.roommateName)
 		this.props.getNameInfo(this.state.roommateName);
 		console.log("roommate name is " + this.state.roommateName);
@@ -42,16 +75,16 @@ var InputComponent = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<h1>Input component</h1>
+				<InputComponent />
+				<SelectChore />
 				<div>
-					<input onChange={this.handleNameChangeInput} name="roommateName" type="text" value={this.state.roommateName}/>
-					<div><button onClick={this.handleNameEntry}> Log :) </button></div>
+					<button onClick={this.handleDataEntry}> Log :) </button>
 				</div>
 			</div>
-
 		)
 	}
 })
+
 
 
 ReactDOM.render(<MainComponent/>, document.getElementById('container'));
