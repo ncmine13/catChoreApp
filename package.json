@@ -1,0 +1,26 @@
+{
+  "name": "catapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.3.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.3.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "superagent": "^3.5.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}

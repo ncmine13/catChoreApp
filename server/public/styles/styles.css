@@ -1,0 +1,10 @@
+html {
+  background-size: 100%;
+  margin: 0px;
+}
+body {
+  background-image: url('/images/catBG.jpg');
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
