@@ -1,7 +1,9 @@
 require 'sinatra/base'
 
 require './server/controllers/ApplicationController'
-require './server/controllers/MainController'
+require './server/controllers/ChoreController'
+
+require './server/models/Chore'
 
 map('/') {run ApplicationController}
-map('/home') {run MainController}
+map('/home') {run ChoreController}
