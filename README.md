@@ -5,4 +5,4 @@ This is an expandable app aiming to sort who is doing what cat-related chores in
 MVC, uses React front end and Sinatra/ActiveRecord back end.
 
 
-![1](public/images/CatWireframe.jpg)
+![1](public/images/CatWireframe.png)
