@@ -12,12 +12,7 @@ class InputComponent extends React.Component {
 			chorename: '',
 			entryInfo: []
 		}
-
-		this.handleNameInput = this.handleNameInput.bind(this)
-		this.handleSelectChange = this.handleSelectChange.bind(this);
-		this.handleDataEntry = this.handleDataEntry.bind(this);
 	}
-
 	componentDidMount(){
 		var state = this.state;
 		var self = this;
@@ -27,6 +22,32 @@ class InputComponent extends React.Component {
 			self.setState(state);
 			console.log(state, " this is the state in componentdidmount")
 		})
+	}
+	render(){
+		console.log(this.state, "this is state")
+		
+		return (
+			<div>
+				<NewComponent />
+			</div>
+
+		)
+	}
+}
+
+
+
+class NewComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			roommatename: '',
+			chorename: '',
+			entryInfo: []
+		}
+		this.handleNameInput = this.handleNameInput.bind(this)
+		this.handleSelectChange = this.handleSelectChange.bind(this);
+		this.handleDataEntry = this.handleDataEntry.bind(this);
 	}
 	handleNameInput(e){
 		this.setState({roommatename: e.target.value});
@@ -38,11 +59,33 @@ class InputComponent extends React.Component {
 		e.preventDefault();
 		console.log("state object: ", this.state)
 	}
-	render(){
-		// console.log(this.state.entryInfo, "render state")
-		// let entries = this.state.entryInfo
-		// console.log(entries, "these are entries")
-		console.log(this.state, "this is state")
+	render() {
+
+		return (
+			<div className="inputComponentDiv">
+				<form onSubmit={this.handleDataEntry.bind(this)}>
+					<div>
+						<input type="text" value={this.state.roommatename} onChange={this.handleNameInput.bind(this)}/>
+					</div>
+					<div>
+						<select value={this.state.value} onChange={this.handleSelectChange}>
+							<option value="litter">cleaned litter box</option>
+							<option value="foodPurchase">bought food</option>
+							<option value="nails">trimmed nails</option>
+							<option value="feed">fed the kitty</option>
+						</select>
+					</div>
+					<div>
+						<button type="submit"> Log :) </button>
+					</div>
+				</form>
+			</div>
+		)
+	}
+}
+
+
+
 
 		// let choreHistory = entries.map((entry, i) =>
 		// 	<li key={i}>
@@ -50,52 +93,8 @@ class InputComponent extends React.Component {
 		// 	</li>
 		// )
 
-		return (
-
-			<div>
-				<NewComponent handleDataEntry={this.handleDataEntry} handleNameInput={this.handleNameInput} handleSelectChange={this.handleSelectChange}/>
-			</div>
-
-		)
-	}
-}
-class NewComponent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			roommatename: '',
-			chorename: '',
-			entryInfo: []
-		}
-	}
-	render() {
-		return (
-			<div className="inputComponentDiv">
-				<h1>yo</h1>
-
-			</div>
-
-		)
-	}
-}
 
 
-// <form onSubmit={this.handleDataEntry.bind(this)}>
-// 	<div>
-// 		<input type="text" value={this.state.roommatename} onChange={this.handleNameInput.bind(this)}/>
-// 	</div>
-// 	<div>
-// 		<select value={this.state.value} onChange={this.handleSelectChange}>
-// 			<option value="litter">cleaned litter box</option>
-// 			<option value="foodPurchase">bought food</option>
-// 			<option value="nails">trimmed nails</option>
-// 			<option value="feed">fed the kitty</option>
-// 		</select>
-// 	</div>
-// 	<div>
-// 		<button type="submit"> Log :) </button>
-// 	</div>
-// </form>
 
 
 //
