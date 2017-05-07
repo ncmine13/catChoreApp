@@ -8,20 +8,19 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-body #container div {
+body #container .inputComponentDiv {
   display: flex;
   flex-direction: row;
   margin-top: 8%;
   margin-left: 5%;
-}
-body #container div .inputComponentDiv {
   width: 100%;
 }
-body #container div .inputComponentDiv form {
+body #container .inputComponentDiv form {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
-body #container div .inputComponentDiv form button {
+body #container .inputComponentDiv form button {
   width: 87px;
   padding: 5px;
   border-radius: 3px;
