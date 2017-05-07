@@ -17,7 +17,7 @@ class InputComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			roommateName: ''
+			roommatename: ''
 		}
 		this.handleNameInput = this.handleNameInput.bind(this)
 		this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -25,7 +25,7 @@ class InputComponent extends React.Component {
 	}
 
 	handleNameInput(e){
-		this.setState({roommateName: e.target.value});
+		this.setState({roommatename: e.target.value});
 	}
 	handleSelectChange(e){
 		this.setState({value: e.target.value});
@@ -40,7 +40,7 @@ class InputComponent extends React.Component {
 				<div>
 					<form onSubmit={this.handleDataEntry.bind(this)}>
 						<div>
-							<input type="text" value={this.state.roommateName} onChange={this.handleNameInput.bind(this)}/>
+							<input type="text" value={this.state.roommatename} onChange={this.handleNameInput.bind(this)}/>
 						</div>
 						<div>
 							<select value={this.state.value} onChange={this.handleSelectChange}>

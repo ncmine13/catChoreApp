@@ -18,7 +18,7 @@ class InputComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			roommateName: ''
+			roommatename: ''
 		};
 		this.handleNameInput = this.handleNameInput.bind(this);
 		this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -26,7 +26,7 @@ class InputComponent extends React.Component {
 	}
 
 	handleNameInput(e) {
-		this.setState({ roommateName: e.target.value });
+		this.setState({ roommatename: e.target.value });
 	}
 	handleSelectChange(e) {
 		this.setState({ value: e.target.value });
@@ -48,7 +48,7 @@ class InputComponent extends React.Component {
 					React.createElement(
 						'div',
 						null,
-						React.createElement('input', { type: 'text', value: this.state.roommateName, onChange: this.handleNameInput.bind(this) })
+						React.createElement('input', { type: 'text', value: this.state.roommatename, onChange: this.handleNameInput.bind(this) })
 					),
 					React.createElement(
 						'div',
