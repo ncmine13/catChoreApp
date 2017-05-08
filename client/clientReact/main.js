@@ -12,30 +12,44 @@ class InputComponent extends React.Component {
 			chorename: '',
 			entryInfo: []
 		}
+
+		this.createItem = this.createItem.bind(this);
 	}
 	componentDidMount(){
+		console.log("this is this componentDidMount", this)
 		var state = this.state;
 		var self = this;
 		request.get('http://localhost:9292/home/chores')
-		.end(function(err, data){
+		.end((err, data) => {
 			state.entryInfo = data.body;
 			self.setState(state);
-			console.log(state, " this is the state in componentdidmount")
+		})
+	}
+	createItem(chore){
+		console.log("this is this in create item", this)
+		var state = this.state;
+		var self = this;
+		request.post('http://localhost:9292/home/chores')
+		.type('form')
+		.send(chore)
+		.end((err, data) => {
+			console.log(data.body, "this is data.body")
+			console.log(state, "this is state within the request")
+			state.data = data.body;
+			self.setState(state);
 		})
 	}
 	render(){
-		console.log(this.state, "this is state")
-		
+		console.log("this is this in render", this)
+		//THE PROBLEM IS THAT THERE ARE TWO "THIS"ES AND THE FIRST ONE IS WHAT IS PASSING DOWN THE FUNCTION "MAKENEWITEM" AND IT IS EMPTY
 		return (
 			<div>
-				<NewComponent />
+				<NewComponent createItem={this.createItem}/>
 			</div>
 
 		)
 	}
 }
-
-
 
 class NewComponent extends React.Component {
 	constructor(props) {
@@ -43,11 +57,7 @@ class NewComponent extends React.Component {
 		this.state = {
 			roommatename: '',
 			chorename: '',
-			entryInfo: []
 		}
-		this.handleNameInput = this.handleNameInput.bind(this)
-		this.handleSelectChange = this.handleSelectChange.bind(this);
-		this.handleDataEntry = this.handleDataEntry.bind(this);
 	}
 	handleNameInput(e){
 		this.setState({roommatename: e.target.value});
@@ -56,11 +66,12 @@ class NewComponent extends React.Component {
 		this.setState({chorename: e.target.value});
 	}
 	handleDataEntry(e){
+		console.log("these are data entry props", this.props)
+		console.log("state in handle data entry", this.state)
 		e.preventDefault();
-		console.log("state object: ", this.state)
+		this.props.createItem(this.state);
 	}
 	render() {
-
 		return (
 			<div className="inputComponentDiv">
 				<form onSubmit={this.handleDataEntry.bind(this)}>
@@ -68,7 +79,8 @@ class NewComponent extends React.Component {
 						<input type="text" value={this.state.roommatename} onChange={this.handleNameInput.bind(this)}/>
 					</div>
 					<div>
-						<select value={this.state.value} onChange={this.handleSelectChange}>
+						<select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
+							<option>Select</option>
 							<option value="litter">cleaned litter box</option>
 							<option value="foodPurchase">bought food</option>
 							<option value="nails">trimmed nails</option>

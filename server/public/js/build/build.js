@@ -13,23 +13,36 @@ class InputComponent extends React.Component {
 			chorename: '',
 			entryInfo: []
 		};
+
+		this.createItem = this.createItem.bind(this);
 	}
 	componentDidMount() {
+		console.log("this is this componentDidMount", this);
 		var state = this.state;
 		var self = this;
-		request.get('http://localhost:9292/home/chores').end(function (err, data) {
+		request.get('http://localhost:9292/home/chores').end((err, data) => {
 			state.entryInfo = data.body;
 			self.setState(state);
-			console.log(state, " this is the state in componentdidmount");
+		});
+	}
+	createItem(chore) {
+		console.log("this is this in create item", this);
+		var state = this.state;
+		var self = this;
+		request.post('http://localhost:9292/home/chores').type('form').send(chore).end((err, data) => {
+			console.log(data.body, "this is data.body");
+			console.log(state, "this is state within the request");
+			state.data = data.body;
+			self.setState(state);
 		});
 	}
 	render() {
-		console.log(this.state, "this is state");
-
+		console.log("this is this in render", this);
+		//THE PROBLEM IS THAT THERE ARE TWO "THIS"ES AND THE FIRST ONE IS WHAT IS PASSING DOWN THE FUNCTION "MAKENEWITEM" AND IT IS EMPTY
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(NewComponent, null)
+			React.createElement(NewComponent, { createItem: this.createItem })
 		);
 	}
 }
@@ -39,12 +52,8 @@ class NewComponent extends React.Component {
 		super(props);
 		this.state = {
 			roommatename: '',
-			chorename: '',
-			entryInfo: []
+			chorename: ''
 		};
-		this.handleNameInput = this.handleNameInput.bind(this);
-		this.handleSelectChange = this.handleSelectChange.bind(this);
-		this.handleDataEntry = this.handleDataEntry.bind(this);
 	}
 	handleNameInput(e) {
 		this.setState({ roommatename: e.target.value });
@@ -53,11 +62,12 @@ class NewComponent extends React.Component {
 		this.setState({ chorename: e.target.value });
 	}
 	handleDataEntry(e) {
+		console.log("these are data entry props", this.props);
+		console.log("state in handle data entry", this.state);
 		e.preventDefault();
-		console.log("state object: ", this.state);
+		this.props.createItem(this.state);
 	}
 	render() {
-
 		return React.createElement(
 			'div',
 			{ className: 'inputComponentDiv' },
@@ -74,7 +84,12 @@ class NewComponent extends React.Component {
 					null,
 					React.createElement(
 						'select',
-						{ value: this.state.value, onChange: this.handleSelectChange },
+						{ value: this.state.value, onChange: this.handleSelectChange.bind(this) },
+						React.createElement(
+							'option',
+							null,
+							'Select'
+						),
 						React.createElement(
 							'option',
 							{ value: 'litter' },
