@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var request = require('superagent');
-// var Select = require('react-select');
 
 
 class InputComponent extends React.Component {
@@ -40,16 +39,27 @@ class InputComponent extends React.Component {
 		})
 	}
 	render(){
-		console.log("this is this in render", this)
-		//THE PROBLEM IS THAT THERE ARE TWO "THIS"ES AND THE FIRST ONE IS WHAT IS PASSING DOWN THE FUNCTION "MAKENEWITEM" AND IT IS EMPTY
+		console.log(this.state.data, "this is datas")
+		var chores = this.state.entryInfo;
+		console.log(chores, "this is chores")
+		var listItems = chores.map((chore) =>
+			<li key = {chore.id}>
+				{chore.roommatename} did {chore.chorename} today.
+			</li>
+		);
 		return (
 			<div>
 				<NewComponent createItem={this.createItem}/>
+				<ul className="listItems">
+					{listItems}
+				</ul>
 			</div>
 
 		)
 	}
 }
+
+
 
 class NewComponent extends React.Component {
 	constructor(props) {
@@ -96,47 +106,6 @@ class NewComponent extends React.Component {
 	}
 }
 
-
-
-
-		// let choreHistory = entries.map((entry, i) =>
-		// 	<li key={i}>
-		// 		{entry.roommatename}
-		// 	</li>
-		// )
-
-
-
-
-
-//
-// class ListComponent extends React.Component {
-// 	constructor(props) {
-// 		super(props)
-// 		this.state = {
-// 			entryInfo: []
-// 		}
-// 		console.log("ugh state ", this.state)
-//
-// 	}
-// 	render(){
-// 		return (
-// 			<h1>list component</h1>
-// 		)
-// 	}
-// }
-
-// function () {
-// 		const entries = this.state.entryInfo
-// 		console.log(entries, "these are entries")
-// 		// const listItems = roommates.map((roommate, ) =>
-// 		// <li key={roommates.id}></li>
-// 		// )
-// 		return (
-//
-// 		);
-
-// }
 
 
 ReactDOM.render(<InputComponent/>, document.getElementById('container'));
