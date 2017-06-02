@@ -35,27 +35,58 @@ class InputComponent extends React.Component {
 		});
 	}
 	render() {
-		console.log(this.state.data, "this is datas");
 		var chores = this.state.entryInfo;
 		console.log(chores, "this is chores");
-		var listItems = chores.map(chore => React.createElement(
-			'li',
-			{ key: chore.id },
-			chore.roommatename,
-			' did ',
-			chore.chorename,
-			' on ',
-			chore.dateday,
-			'.'
-		));
+		//if chores.length is 0, 
+		// var listItems = chores.map((chore) =>
+		// 	<li key = {chore.id}>
+		// 		{chore.roommatename} {chore.chorename} on {chore.dateday}.
+		// 	</li>
+		// );
+		// var reversedList = listItems.reverse();
+		// <ul className="listItems">
+		// 	{reversedList}
+		// </ul>
 		return React.createElement(
 			'div',
 			null,
-			React.createElement(NewComponent, { createItem: this.createItem }),
+			chores.length === 0 ? React.createElement(InitialView, null) : React.createElement(ChoreList, null),
+			React.createElement(NewComponent, { createItem: this.createItem })
+		);
+	}
+}
+
+class InitialView extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			roommatename: '',
+			chorename: '',
+			entryInfo: []
+		};
+	}
+	render() {
+		return React.createElement(
+			'div',
+			null,
 			React.createElement(
-				'ul',
-				{ className: 'listItems' },
-				listItems
+				'h1',
+				null,
+				'Welcome to your chore list! Log a chore.'
+			)
+		);
+	}
+}
+
+class ChoreList extends React.Component {
+	render() {
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				'h1',
+				null,
+				'chorelissst'
 			)
 		);
 	}
@@ -106,22 +137,22 @@ class NewComponent extends React.Component {
 						),
 						React.createElement(
 							'option',
-							{ value: 'litter' },
+							{ value: 'cleaned the litter box' },
 							'cleaned litter box'
 						),
 						React.createElement(
 							'option',
-							{ value: 'foodPurchase' },
+							{ value: 'bought food' },
 							'bought food'
 						),
 						React.createElement(
 							'option',
-							{ value: 'nails' },
+							{ value: 'trimmed the kitty nails' },
 							'trimmed nails'
 						),
 						React.createElement(
 							'option',
-							{ value: 'feed' },
+							{ value: 'fed the kitty' },
 							'fed the kitty'
 						)
 					)

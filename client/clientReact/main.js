@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var request = require('superagent');
 
 
+
 class InputComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -39,22 +40,54 @@ class InputComponent extends React.Component {
 		})
 	}
 	render(){
-		console.log(this.state.data, "this is datas")
 		var chores = this.state.entryInfo;
 		console.log(chores, "this is chores")
-		var listItems = chores.map((chore) =>
-			<li key = {chore.id}>
-				{chore.roommatename} did {chore.chorename} on {chore.dateday}.
-			</li>
-		);
+		//if chores.length is 0, 
+		// var listItems = chores.map((chore) =>
+		// 	<li key = {chore.id}>
+		// 		{chore.roommatename} {chore.chorename} on {chore.dateday}.
+		// 	</li>
+		// );
+		// var reversedList = listItems.reverse();
+				// <ul className="listItems">
+				// 	{reversedList}
+				// </ul>
 		return (
 			<div>
+				{(chores.length === 0 )? <InitialView/> : <ChoreList/>}
 				<NewComponent createItem={this.createItem}/>
-				<ul className="listItems">
-					{listItems}
-				</ul>
+
 			</div>
 
+		)
+	}
+}
+
+class InitialView extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			roommatename: '',
+			chorename: '',
+			entryInfo: []
+		}
+	}
+	render() {
+		return (
+			<div>
+				<h1>Welcome to your chore list! Log a chore.</h1>
+			</div>
+		)
+	}
+}
+
+
+class ChoreList extends React.Component {
+	render() {
+		return (
+			<div>
+				<h1>chorelissst</h1>
+			</div>
 		)
 	}
 }
@@ -91,10 +124,10 @@ class NewComponent extends React.Component {
 					<div>
 						<select value={this.state.value} onChange={this.handleSelectChange.bind(this)}>
 							<option>Select</option>
-							<option value="litter">cleaned litter box</option>
-							<option value="foodPurchase">bought food</option>
-							<option value="nails">trimmed nails</option>
-							<option value="feed">fed the kitty</option>
+							<option value="cleaned the litter box">cleaned litter box</option>
+							<option value="bought food">bought food</option>
+							<option value="trimmed the kitty nails">trimmed nails</option>
+							<option value="fed the kitty">fed the kitty</option>
 						</select>
 					</div>
 					<div>

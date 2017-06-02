@@ -9,11 +9,12 @@ body {
   background-attachment: fixed;
 }
 body .outerBox {
-  width: 400px;
-  height: auto;
-  background-color: rgba(0, 0, 0, 0.68);
-  margin-left: 60%;
-  margin-top: 15%;
+  /*		width: 400px;
+		overflow-y: auto;
+		max-height: 71vh;
+		background-color: rgba(0, 0, 0, 0.68);
+		margin-left: 60%;
+    	margin-top: 15%;*/
 }
 body .outerBox #container {
   padding: 15px 0;
