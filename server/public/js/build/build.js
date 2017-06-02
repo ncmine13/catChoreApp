@@ -36,22 +36,33 @@ class InputComponent extends React.Component {
 	}
 	render() {
 		var chores = this.state.entryInfo;
+		var reversedList = [];
+
 		console.log(chores, "this is chores");
-		//if chores.length is 0, 
-		// var listItems = chores.map((chore) =>
-		// 	<li key = {chore.id}>
-		// 		{chore.roommatename} {chore.chorename} on {chore.dateday}.
-		// 	</li>
-		// );
-		// var reversedList = listItems.reverse();
-		// <ul className="listItems">
-		// 	{reversedList}
-		// </ul>
+		if (chores.length > 0) {
+			console.log("in if");
+			var listItems = chores.map(chore => React.createElement(
+				'li',
+				{ key: chore.id },
+				chore.roommatename,
+				' ',
+				chore.chorename,
+				' on ',
+				chore.dateday,
+				'.'
+			));
+			reversedList = listItems.reverse();
+		}
 		return React.createElement(
 			'div',
 			null,
-			chores.length === 0 ? React.createElement(InitialView, null) : React.createElement(ChoreList, null),
-			React.createElement(NewComponent, { createItem: this.createItem })
+			chores.length === 0 ? React.createElement(InitialView, null) : null,
+			React.createElement(NewComponent, { createItem: this.createItem }),
+			chores.length > 0 ? React.createElement(
+				'ul',
+				{ className: 'listItems' },
+				reversedList
+			) : null
 		);
 	}
 }
@@ -73,20 +84,6 @@ class InitialView extends React.Component {
 				'h1',
 				null,
 				'Welcome to your chore list! Log a chore.'
-			)
-		);
-	}
-}
-
-class ChoreList extends React.Component {
-	render() {
-		return React.createElement(
-			'div',
-			null,
-			React.createElement(
-				'h1',
-				null,
-				'chorelissst'
 			)
 		);
 	}

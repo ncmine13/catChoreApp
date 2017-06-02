@@ -41,24 +41,24 @@ class InputComponent extends React.Component {
 	}
 	render(){
 		var chores = this.state.entryInfo;
+		var reversedList = [];
+
 		console.log(chores, "this is chores")
-		//if chores.length is 0, 
-		// var listItems = chores.map((chore) =>
-		// 	<li key = {chore.id}>
-		// 		{chore.roommatename} {chore.chorename} on {chore.dateday}.
-		// 	</li>
-		// );
-		// var reversedList = listItems.reverse();
-				// <ul className="listItems">
-				// 	{reversedList}
-				// </ul>
+		if (chores.length > 0){
+			console.log("in if")
+				var listItems = chores.map((chore) =>
+				<li key = {chore.id}>
+					{chore.roommatename} {chore.chorename} on {chore.dateday}.
+				</li>
+			);
+			reversedList = listItems.reverse();
+		}		
 		return (
 			<div>
-				{(chores.length === 0 )? <InitialView/> : <ChoreList/>}
+				{(chores.length === 0) ? <InitialView/> : null}
 				<NewComponent createItem={this.createItem}/>
-
+				{(chores.length > 0) ? <ul className="listItems">{reversedList}</ul> : null}
 			</div>
-
 		)
 	}
 }
@@ -80,18 +80,6 @@ class InitialView extends React.Component {
 		)
 	}
 }
-
-
-class ChoreList extends React.Component {
-	render() {
-		return (
-			<div>
-				<h1>chorelissst</h1>
-			</div>
-		)
-	}
-}
-
 
 
 class NewComponent extends React.Component {
