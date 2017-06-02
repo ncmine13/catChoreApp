@@ -8,23 +8,35 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-body #container .inputComponentDiv {
+body .outerBox {
+  width: 400px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.68);
+  margin-left: 60%;
+  margin-top: 15%;
+}
+body .outerBox #container {
+  padding: 15px 0;
+}
+body .outerBox #container .inputComponentDiv {
   display: flex;
   flex-direction: row;
   margin-top: 8%;
   margin-left: 5%;
   width: 100%;
 }
-body #container .inputComponentDiv form {
+body .outerBox #container .inputComponentDiv form {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-body #container .inputComponentDiv form button {
+body .outerBox #container .inputComponentDiv form button {
   width: 87px;
   padding: 5px;
   border-radius: 3px;
 }
-body #container .listItems li {
+body .outerBox #container .listItems li {
   color: white;
+  list-style: none;
+  padding: 10px 0;
 }

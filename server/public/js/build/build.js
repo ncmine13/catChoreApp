@@ -44,7 +44,9 @@ class InputComponent extends React.Component {
 			chore.roommatename,
 			' did ',
 			chore.chorename,
-			' today.'
+			' on ',
+			chore.dateday,
+			'.'
 		));
 		return React.createElement(
 			'div',

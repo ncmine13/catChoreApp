@@ -44,7 +44,7 @@ class InputComponent extends React.Component {
 		console.log(chores, "this is chores")
 		var listItems = chores.map((chore) =>
 			<li key = {chore.id}>
-				{chore.roommatename} did {chore.chorename} today.
+				{chore.roommatename} did {chore.chorename} on {chore.dateday}.
 			</li>
 		);
 		return (
