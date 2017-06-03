@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var NewComponent = require('./NewComponent');
 var InitialView = require('./InitialView');
-var request = require('superagent')
+var request = require('superagent');
 
 
 class InputComponent extends React.Component {
