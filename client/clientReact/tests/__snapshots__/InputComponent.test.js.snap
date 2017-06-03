@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InputComponent should render as expected 1`] = `
+exports[`The InputComponent should render as expected 1`] = `
 <div>
   <NewComponent
     createItem={[Function]}

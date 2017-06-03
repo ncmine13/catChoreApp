@@ -5,25 +5,28 @@ import toJson from 'enzyme-to-json'
 import InputComponent from '../InputComponent';
 
 
-test('InputComponent should render as expected', () => {
-	const component = shallow(<InputComponent />)
-	const tree = toJson(component)
-	console.log(tree)
-	expect(tree).toMatchSnapshot();
-})
+describe('The InputComponent', () => {
+	test('should render as expected', () => {
+		const component = shallow(<InputComponent />)
+		const tree = toJson(component)
+		expect(tree).toMatchSnapshot();
+	});
+});
 
-test('Request to chores API works', () => {
-	var server = sinon.fakeServer.create();
-	server.respondWith('get', '/chores')
 
-})
+describe('The database', () => {
+	test('is empty when it contains no entries', () => {
+		const chores = [];
+		expect(chores.length).toEqual(0);
+	});
+});
 
-test('InitialView component only renders when database is empty', () => {
-	const chores = [];
-	const InitialView = shallow(<InitialView />)
-	//expect Initial View to render
 
-})
+// test('Request to chores API works', () => {
+// 	var server = sinon.fakeServer.create();
+// 	server.respondWith('get', '/chores')
+
+// })
 
 //post request should work
 //get request should work

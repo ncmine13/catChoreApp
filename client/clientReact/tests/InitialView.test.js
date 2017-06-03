@@ -7,7 +7,6 @@ import InitialView from '../InitialView';
 test('InitialView component should render as expected', () => {
 	const component = shallow(<InitialView />)
 	const tree = toJson(component)
-	console.log(tree)
 	expect(tree).toMatchSnapshot();
 })
 

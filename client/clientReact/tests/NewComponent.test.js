@@ -7,7 +7,6 @@ import NewComponent from '../NewComponent';
 test('NewComponent should render as expected', () => {
 	const component = shallow(<NewComponent />)
 	const tree = toJson(component)
-	console.log(tree)
 	expect(tree).toMatchSnapshot();
 })
 
