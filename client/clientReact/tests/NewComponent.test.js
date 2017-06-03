@@ -11,6 +11,6 @@ test('NewComponent should render as expected', () => {
 	expect(tree).toMatchSnapshot();
 })
 
-//should render always
+//should render 
 //should set state based on entries in input fields
 //should send state up to input component when log button is pressed

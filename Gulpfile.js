@@ -6,7 +6,7 @@ var watch = require('gulp-watch');
 var less = require('gulp-less');
 
 gulp.task('react', function(){
-return browserify('./client/clientReact/main.js')
+return browserify('./client/clientReact/InputComponent.js')
         .transform('babelify', {presets: ["react"]})
         .bundle()
         .pipe(source('build.js'))

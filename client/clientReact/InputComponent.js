@@ -1,7 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import NewComponent from './NewComponent'
-import InitialView from './InitialView'
+var NewComponent = require('./NewComponent');
+var InitialView = require('./InitialView');
+var request = require('superagent')
 
 
 class InputComponent extends React.Component {
@@ -22,6 +23,7 @@ class InputComponent extends React.Component {
 		request.get('http://localhost:9292/home/chores')
 		.end((err, data) => {
 			state.entryInfo = data.body;
+			console.log(data.body)
 			self.setState(state);
 		})
 	}
@@ -61,5 +63,5 @@ class InputComponent extends React.Component {
 }
 
 
-// ReactDOM.render(<InputComponent/>, document.getElementById('container'));
-module.exports = InputComponent
+ReactDOM.render(<InputComponent/>, document.getElementById('container'));
+module.exports = InputComponent;

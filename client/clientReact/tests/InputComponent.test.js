@@ -10,5 +10,6 @@ test('InputComponent should render as expected', () => {
 	console.log(tree)
 	expect(tree).toMatchSnapshot();
 })
+
 //post request should work
 //get request should work
