@@ -14,7 +14,6 @@ class InputComponent extends React.Component {
 		}
 
 		this.createItem = this.createItem.bind(this);
-		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 	componentDidMount(){
 		console.log("this is this componentDidMount", this)
@@ -62,5 +61,5 @@ class InputComponent extends React.Component {
 }
 
 
-ReactDOM.render(<InputComponent/>, document.getElementById('container'));
+// ReactDOM.render(<InputComponent/>, document.getElementById('container'));
 module.exports = InputComponent

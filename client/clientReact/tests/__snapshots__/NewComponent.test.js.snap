@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewComponent should render as expected 1`] = `
+<div
+  className="inputComponentDiv"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div>
+      <input
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div>
+      <select
+        onChange={[Function]}
+      >
+        <option>
+          Select
+        </option>
+        <option
+          value="cleaned the litter box"
+        >
+          cleaned litter box
+        </option>
+        <option
+          value="bought food"
+        >
+          bought food
+        </option>
+        <option
+          value="trimmed the kitty nails"
+        >
+          trimmed nails
+        </option>
+        <option
+          value="fed the kitty"
+        >
+          fed the kitty
+        </option>
+      </select>
+    </div>
+    <div>
+      <button
+        type="submit"
+      >
+         Log :) 
+      </button>
+    </div>
+  </form>
+</div>
+`;

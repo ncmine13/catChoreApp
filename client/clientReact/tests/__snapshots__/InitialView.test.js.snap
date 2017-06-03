@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InitialView component should render as expected 1`] = `
+<div>
+  <h1>
+    Welcome to your chore list! Log a chore.
+  </h1>
+</div>
+`;
