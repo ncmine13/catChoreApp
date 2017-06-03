@@ -14,6 +14,7 @@ class InputComponent extends React.Component {
 		}
 
 		this.createItem = this.createItem.bind(this);
+		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 	componentDidMount(){
 		console.log("this is this componentDidMount", this)
@@ -37,15 +38,13 @@ class InputComponent extends React.Component {
 			console.log(state, "this is state within the request")
 			state.data = data.body;
 			self.setState(state);
+			self.componentDidMount();
 		})
 	}
 	render(){
 		var chores = this.state.entryInfo;
 		var reversedList = [];
-
-		console.log(chores, "this is chores")
 		if (chores.length > 0){
-			console.log("in if")
 				var listItems = chores.map((chore) =>
 				<li key = {chore.id}>
 					{chore.roommatename} {chore.chorename} on {chore.dateday}.
@@ -55,13 +54,13 @@ class InputComponent extends React.Component {
 		}		
 		return (
 			<div>
-				{(chores.length === 0) ? <InitialView/> : null}
 				<NewComponent createItem={this.createItem}/>
-				{(chores.length > 0) ? <ul className="listItems">{reversedList}</ul> : null}
+				{(chores.length === 0) ? <InitialView/> : <div className="listDiv"><ul className="listItems">{reversedList}</ul></div>}
 			</div>
 		)
 	}
 }
+
 
 class InitialView extends React.Component {
 	constructor(props) {
@@ -81,7 +80,6 @@ class InitialView extends React.Component {
 	}
 }
 
-
 class NewComponent extends React.Component {
 	constructor(props) {
 		super(props);
@@ -97,8 +95,6 @@ class NewComponent extends React.Component {
 		this.setState({chorename: e.target.value});
 	}
 	handleDataEntry(e){
-		console.log("these are data entry props", this.props)
-		console.log("state in handle data entry", this.state)
 		e.preventDefault();
 		this.props.createItem(this.state);
 	}

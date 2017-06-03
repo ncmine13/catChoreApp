@@ -13,6 +13,7 @@ class InputComponent extends React.Component {
 		};
 
 		this.createItem = this.createItem.bind(this);
+		this.componentDidMount = this.componentDidMount.bind(this);
 	}
 	componentDidMount() {
 		console.log("this is this componentDidMount", this);
@@ -32,15 +33,13 @@ class InputComponent extends React.Component {
 			console.log(state, "this is state within the request");
 			state.data = data.body;
 			self.setState(state);
+			self.componentDidMount();
 		});
 	}
 	render() {
 		var chores = this.state.entryInfo;
 		var reversedList = [];
-
-		console.log(chores, "this is chores");
 		if (chores.length > 0) {
-			console.log("in if");
 			var listItems = chores.map(chore => React.createElement(
 				'li',
 				{ key: chore.id },
@@ -56,13 +55,16 @@ class InputComponent extends React.Component {
 		return React.createElement(
 			'div',
 			null,
-			chores.length === 0 ? React.createElement(InitialView, null) : null,
 			React.createElement(NewComponent, { createItem: this.createItem }),
-			chores.length > 0 ? React.createElement(
-				'ul',
-				{ className: 'listItems' },
-				reversedList
-			) : null
+			chores.length === 0 ? React.createElement(InitialView, null) : React.createElement(
+				'div',
+				{ className: 'listDiv' },
+				React.createElement(
+					'ul',
+					{ className: 'listItems' },
+					reversedList
+				)
+			)
 		);
 	}
 }
@@ -104,8 +106,6 @@ class NewComponent extends React.Component {
 		this.setState({ chorename: e.target.value });
 	}
 	handleDataEntry(e) {
-		console.log("these are data entry props", this.props);
-		console.log("state in handle data entry", this.state);
 		e.preventDefault();
 		this.props.createItem(this.state);
 	}

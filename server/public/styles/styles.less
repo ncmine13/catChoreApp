@@ -10,42 +10,47 @@ body {
 	background-attachment: fixed;
 
 	.outerBox {
-/*		width: 400px;
-		overflow-y: auto;
-		max-height: 71vh;
-		background-color: rgba(0, 0, 0, 0.68);
-		margin-left: 60%;
-    	margin-top: 15%;*/
+
 
 		#container {
 			padding: 15px 0;
 
-		.inputComponentDiv {
-			display: flex;
-			flex-direction: row;
-			margin-top: 8%;
-			margin-left: 5%;
-			width:100%;
-			form {
-				display:flex;
-				flex-direction: row;
-				align-items: center;
+			div {
+				display: flex;
+			    flex-direction: column;
+			    align-items: center;
+			    margin-top:5%;
 
-				button {
-					width: 87px;
-					padding: 5px;
-					border-radius: 3px;
+			    .listDiv {
+					width: 400px;
+					margin-top: 5%;
+					overflow-y: auto;
+					max-height: 71vh;
+					background-color: rgba(0, 0, 0, 0.68);
+				}
+
+				.inputComponentDiv {
+					form {
+						display:flex;
+						flex-direction: row;
+						align-items: center;
+
+						button {
+							width: 87px;
+							padding: 5px;
+							border-radius: 3px;
+							border: 3px solid white;
+						}
+					}
+				}
+				.listItems {
+					li {
+						color:white;
+						list-style: none;
+						padding:10px 0;
+					}
 				}
 			}
 		}
-		.listItems {
-			li {
-				color:white;
-				list-style: none;
-				padding:10px 0;
-			}
-		}
 	}
-	}
-
 }

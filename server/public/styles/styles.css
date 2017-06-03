@@ -8,35 +8,34 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-body .outerBox {
-  /*		width: 400px;
-		overflow-y: auto;
-		max-height: 71vh;
-		background-color: rgba(0, 0, 0, 0.68);
-		margin-left: 60%;
-    	margin-top: 15%;*/
-}
 body .outerBox #container {
   padding: 15px 0;
 }
-body .outerBox #container .inputComponentDiv {
+body .outerBox #container div {
   display: flex;
-  flex-direction: row;
-  margin-top: 8%;
-  margin-left: 5%;
-  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
 }
-body .outerBox #container .inputComponentDiv form {
+body .outerBox #container div .listDiv {
+  width: 400px;
+  margin-top: 5%;
+  overflow-y: auto;
+  max-height: 71vh;
+  background-color: rgba(0, 0, 0, 0.68);
+}
+body .outerBox #container div .inputComponentDiv form {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-body .outerBox #container .inputComponentDiv form button {
+body .outerBox #container div .inputComponentDiv form button {
   width: 87px;
   padding: 5px;
   border-radius: 3px;
+  border: 3px solid white;
 }
-body .outerBox #container .listItems li {
+body .outerBox #container div .listItems li {
   color: white;
   list-style: none;
   padding: 10px 0;

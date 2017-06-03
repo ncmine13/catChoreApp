@@ -4,14 +4,17 @@
   "description": "",
   "main": "Gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "babel-jest": "^20.0.3",
     "gulp": "^3.9.1",
     "gulp-less": "^3.3.0",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "jest": "^20.0.4",
+    "react-test-renderer": "^15.5.4"
   },
   "dependencies": {
     "babel": "^6.23.0",
