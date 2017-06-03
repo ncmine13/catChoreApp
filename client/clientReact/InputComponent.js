@@ -4,7 +4,7 @@ import NewComponent from './NewComponent'
 import InitialView from './InitialView'
 
 
-export default class InputComponent extends React.Component {
+class InputComponent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -63,3 +63,4 @@ export default class InputComponent extends React.Component {
 
 
 ReactDOM.render(<InputComponent/>, document.getElementById('container'));
+module.exports = InputComponent
