@@ -5,7 +5,7 @@ import toJson from 'enzyme-to-json'
 import InputComponent from '../InputComponent';
 
 
-describe('The InputComponent', () => {
+describe.skip('The InputComponent', () => {
 	test('should render as expected', () => {
 		const component = shallow(<InputComponent />)
 		const tree = toJson(component)
@@ -14,7 +14,7 @@ describe('The InputComponent', () => {
 });
 
 
-describe('The database', () => {
+describe.skip('The database', () => {
 	test('is empty when it contains no entries', () => {
 		const chores = [];
 		expect(chores.length).toEqual(0);
