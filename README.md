@@ -9,6 +9,7 @@ Technologies used:
 * Postgres
 * Gulp 
 * Less
+* Jest (testing)
 
 Aims:
 1) Practice using React (increase modularity, incorporate more ES6)
