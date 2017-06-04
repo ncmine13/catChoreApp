@@ -10,9 +10,6 @@ Technologies used:
 * Gulp 
 * Less
 
-
-MVC, uses React front end and Sinatra/ActiveRecord back end.
-
 Aims:
 1) Practice using React (increase modularity, incorporate more ES6)
 2) Practice implementing tests
